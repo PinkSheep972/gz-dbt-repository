@@ -1,5 +1,3 @@
-# schema.yml
-
 version: 2
 
 sources:
@@ -70,7 +68,3 @@ sources:
       - name: facebook
         identifier: raw_gz_facebook
         description: Raw data from Facebook Ads
-
-        
-
-  

@@ -1,8 +1,12 @@
-{{ config(materialized='view') }}
+{{
+  config(
+    materialized = 'view'
+  )
+}}
 
 SELECT
     date_date,
-    paid_source,
+    'adwords' AS source,
     campaign_key,
     campaign_name,
     ads_cost,
@@ -14,7 +18,7 @@ UNION ALL
 
 SELECT
     date_date,
-    'bing' AS paid_source,  -- Bing n'a pas de colonne paid_source, donc nous en ajoutons une
+    'bing' AS source,
     campaign_key,
     campaign_name,
     ads_cost,
@@ -26,7 +30,7 @@ UNION ALL
 
 SELECT
     date_date,
-    'criteo' AS paid_source,  -- Criteo n'a pas de colonne paid_source, donc nous en ajoutons une
+    'criteo' AS source,
     campaign_key,
     campaign_name,
     ads_cost,
@@ -38,7 +42,7 @@ UNION ALL
 
 SELECT
     date_date,
-    'facebook' AS paid_source,  -- Facebook n'a pas de colonne paid_source, donc nous en ajoutons une
+    'facebook' AS source,
     campaign_key,
     campaign_name,
     ads_cost,
