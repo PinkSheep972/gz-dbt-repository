@@ -1,51 +1,14 @@
 {{
-  config(
-    materialized = 'view'
-  )
+    config(
+        materialized='view'
+    )
 }}
 
-SELECT
-    date_date,
-    'adwords' AS source,
-    campaign_key,
-    campaign_name,
-    ads_cost,
-    impression,
-    click
-FROM {{ ref('stg_raw__adwords') }}
+{% set relations = [
+    ref('stg_raw__adwords'),
+    ref('stg_raw__bing'),
+    ref('stg_raw__criteo'),
+    ref('stg_raw__facebook')
+] %}
 
-UNION ALL
-
-SELECT
-    date_date,
-    'bing' AS source,
-    campaign_key,
-    campaign_name,
-    ads_cost,
-    impression,
-    click
-FROM {{ ref('stg_raw__bing') }}
-
-UNION ALL
-
-SELECT
-    date_date,
-    'criteo' AS source,
-    campaign_key,
-    campaign_name,
-    ads_cost,
-    impression,
-    click
-FROM {{ ref('stg_raw__criteo') }}
-
-UNION ALL
-
-SELECT
-    date_date,
-    'facebook' AS source,
-    campaign_key,
-    campaign_name,
-    ads_cost,
-    impression,
-    click
-FROM {{ ref('stg_raw__facebook') }}
+{{ dbt_utils.union_relations(relations) }}
