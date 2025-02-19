@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: int_campaigns
+    description: "Combined campaign data from Adwords, Bing, Criteo, and Facebook."
+    columns:
+      - name: date_date
+        description: "Date of the campaign data."
+      - name: source
+        description: "Source of the campaign data (adwords, bing, criteo, facebook)."
+      - name: campaign_key
+        description: "Unique identifier for the campaign."
+        tests:
+          - not_null
+      - name: campaign_name
+        description: "Name of the campaign."
+      - name: ads_cost
+        description: "Cost of the ads for the campaign."
+      - name: impression
+        description: "Number of impressions for the campaign."
+      - name: click
+        description: "Number of clicks for the campaign."
+  - name: int_campaigns_day
+    description: "Aggregated campaign data for each day."
+    columns:
+      - name: date_date
+        description: "Date of the campaign data."
+        tests:
+          - not_null
+      - name: ads_cost
+        description: "Total cost of ads for the day."
+      - name: ads_impression
+        description: "Total number of impressions for the day."
+      - name: ads_clicks
+        description: "Total number of clicks for the day."
+  - name: finance_campaigns_day
+    description: "Combines finance data with campaign performance data for each day."
+    columns:
+      - name: date
+        description: "Date of the data."
+        tests:
+          - not_null
+      - name: ads_margin
+        description: "Operational margin minus advertising cost."
+      - name: average_basket
+        description: "Average basket value for the day."
+      - name: operational_margin
+        description: "Operational margin for the day."
+      - name: ads_cost
+        description: "Cost of advertising for the day."
+      - name: ads_impression
+        description: "Number of ad impressions for the day."
+      - name: ads_clicks
+        description: "Number of ad clicks for the day."
+      - name: quantity
+        description: "Total quantity of products sold for the day."
+      - name: revenue
+        description: "Total revenue for the day."
+      - name: purchase_cost
+        description: "Total purchase cost for the day."
+      - name: margin
+        description: "Total margin for the day."
+      - name: shipping_fee
+        description: "Total shipping fees for the day."
+      - name: logcost
+        description: "Total logistics cost for the day."
+      - name: ship_cost
+        description: "Total shipping cost for the day."
+  - name: finance_campaigns_month
+    description: "Aggregates finance and campaign data to the month level."
+    columns:
+      - name: datemonth
+        description: "Month of the data (YYYY-MM)."
+        tests:
+          - not_null
+      - name: ads_margin
+        description: "Average operational margin minus advertising cost for the month."
+      - name: average_basket
+        description: "Average average basket value for the month."
+      - name: operational_margin
+        description: "Average operational margin for the month."
+      - name: ads_cost
+        description: "Total cost of advertising for the month."
+      - name: ads_impression
+        description: "Total number of ad impressions for the month."
+      - name: ads_clicks
+        description: "Total number of ad clicks for the month."
+      - name: quantity
+        description: "Total quantity of products sold for the month."
+      - name: revenue
+        description: "Total revenue for the month."
+      - name: purchase_cost
+        description: "Total purchase cost for the month."
+      - name: margin
+        description: "Total margin for the month."
+      - name: shipping_fee
+        description: "Total shipping fees for the month."
+      - name: logcost
+        description: "Total logistics cost for the month."
+      - name: ship_cost
+        description: "Total shipping cost for the month."
